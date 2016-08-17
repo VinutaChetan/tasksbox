@@ -1,0 +1,35 @@
+<table border ="1">
+	<thead>
+		<tr>
+			<th>#</th>
+			<th>Name</th>
+			<th>Client</th>
+			<th>Start Date</th>
+			<th>End date</th>
+			<th>Status</th>
+			<th>Description</th>
+			<th>Estimated budget</th>
+			<th>Actions</th>
+			<th>tasks></th>
+			
+		</tr>
+	</thead>
+	<tbody>
+		<%@projects.each do|project| %>
+		<tr>
+			<td><%=project.id%></td>
+			<td><%=project.name %></td>
+			<td><%= project.client.nil? ? "N/A" : project.client.name%></td>
+			<td><%=project.start_date.strftime("%A,%d,%B,%Y")%></td>
+			<td><%=project.end_end.strftime("%A,%d,%b,%Y")%></td>
+			<td><%=project.status%></td>
+			<td><%=project.description%></td>
+			<td><%=project.estimated_budget%></td>
+			<td><%= link_to "show", project_url(project.id)%></td>
+			<!--client_path is a method-->
+			<td><
+			
+		</tr>
+		<%end%>	
+	</tbody>
+</table>

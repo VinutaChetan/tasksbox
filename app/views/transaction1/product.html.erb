@@ -1,0 +1,62 @@
+<h1>Total Products :<%=@products.size %></h1>
+
+
+
+<%total_price = 0 %>
+<%@products.each do |product|%>
+	<%total_price = total_price + product.price%>
+<% end %>
+<h2>Total Product Price :<%= total_price%></h2>
+
+<% avg = (total_price) / (@products.size) %>
+<h2> Stock Total Price :<%= avg %></h2>
+
+<h2><%= link_to "Category",transaction_category_path%><br><div>
+<%=link_to "Orders" , orderdetails_orders_path%><br><div>
+<%=link_to "LineIems" , orderdetails_lineitems_path%><br><div>
+</div></div></div></h2>
+
+<br>
+<table border = "1">
+	<thead>
+	<thead bgcolor = "brown">
+		<tr>
+			<th>Id</th>
+			<th>Name</th>
+			<th >Price</th>
+			<th>Unit</th>
+			<th>In_stock</th>
+			<th>Available_from</th>
+			<th>Category</th>
+		</tr>
+	</thead>
+<!--<p>Find me in app/views/tansaction/products.html.erb</p>-->
+	
+	<% color = 0 %>
+	<%@products.each_with_index do|product,index| %>
+	<% if color == 0 %>
+		<tr bgcolor = "grey" >
+		<% color = 1 %>
+	<% else %>
+		<% color =0 %>			
+	
+	<tr>
+	<%end %>
+		<td><%=index+1%></td>
+		<td><%=product.name %></td>
+		<td><%=product.price %></td>
+		<td><%=product.unit %></td>
+		<td><%=product.in_stock %></td>
+		<td><%=product.available_from %></td>
+		<th><%=product.category%></th>
+		<!--to disply category name in product catagory field-->
+		<!--Category.find(product.category).name -->
+	</tr>
+
+
+
+	<%end %>
+
+<tbody>	
+</tbody>		
+</table>

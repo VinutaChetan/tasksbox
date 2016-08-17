@@ -1,0 +1,40 @@
+<h3> Edit Projects </h3>
+
+<%= form_for @project do |f|%>
+<% if @project.errors.any? %>
+<h4>These errors prohibited the form from being saved : </h4>
+<ul style ="color:red;">
+	<%@project.errors.full_messages.each do |msg| %>
+		<li><%=msg %></li>
+	<%end%>
+</ul>
+<%end %>
+
+
+<lable>Client</lable><br/>
+<%= f.collection_select :client_id,Client.all,:id,:name, prompt:"select client" %><br/>
+
+<lable>Name</lable><br/>
+<%=f.text_field :name %><br/>
+
+<lable>Description</lable><br/>
+<%=f.text_area :description %><br/>
+
+<lable>Start date</lable><br/>
+<%=f.date_select :start_date,order:[:day,:month,:year] %><br/>
+
+<lable>End_date</lable><br/>
+<%=f.date_select :end_end,order:[:day,:month,:year] %><br/>
+
+<lable>Status</lable><br/>
+<%=f.select :status,["New","On-going","Completed"]%><br/>
+
+<!--<% f.radio_button :status, "New" %>New
+<% f.radio_button :status, "On-going" %>On-Going
+<% f.radio_button :status, "Completed" %>Completed<br/>-->
+
+<lable>Estimated Budget</lable><br/>
+<%=f.text_field :estimated_budget %><br/>
+
+<%=f.submit %>
+<%end %>

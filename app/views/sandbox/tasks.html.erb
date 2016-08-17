@@ -1,0 +1,28 @@
+
+<h3>Listing Projects</h3>
+
+<% @projects.each do |project| %>
+ <h3><%=project.name %></h3>
+ <% if project.newtasks.empty? %>
+ 	<p>No Tasks Found </p>
+ <%else %>
+ <h4>Total tasks :<%=project.newtasks.size %></h4>
+ <ul>
+ 	<% project.newtasks.each do |task| %>
+ 	<li>
+ 	<% if task.is_completed %>
+ 		<s><%=task.title %></s>
+ 		<% else %>
+ 		<%=task.title%>
+ 	<%end%>
+ 	</li>
+ 	<%end%>
+ </ul>
+ <%end%>
+ </ul>
+ <%end%>
+ 
+ 		
+
+
+	

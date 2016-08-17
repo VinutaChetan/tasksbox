@@ -1,0 +1,62 @@
+<h1>Total Orders :<%=@orders.size %></h1>
+<%= link_to "Home",transaction1_product_path%>
+<%=link_to "Recents" , orderdetails_recents_path%><br>
+
+<br>
+<table border ="1">
+	<thead>
+		<tr>
+			<th>#</th>
+			<th>Order_date</th>
+			<th>Order_number</th>
+			
+		</tr>
+	</thead>
+	<tbody>
+		<% @orders.each_with_index do |order,index| %>
+		<tr>
+			<td><%=index+1 %></td>
+			<td><%= order.order_date %></td>
+			<td><%= order.order_number %></td>
+		</tr>
+		<%end%>	
+	</tbody>
+</table>
+<br>
+
+<h2>All orders with line items</h2>
+<%@orders_id.each do |order|%>
+
+<table border ="1">
+	<thead>
+		<tr>
+			<th>Order_id</th>
+			<th>Product_id</th>
+			<th>Quantity</th>
+			<th>Price</th>
+			<th>Total_price</th>
+		</tr>
+	</thead>	
+	 <% products = LineItem.where('order_id = ?',order) %>
+	 <% sum = 0%>
+	 <% products.each do |product| %>
+	 <tbody >
+	 	<tr>
+			<td><%= product.order_id %></td>
+			<td><%= product.product_id %></td>
+			<td><%= product.quantity %></td>
+			<td><%= product.price %></td>
+			<td><%= product.total_price %></td>
+			<% sum =sum+product.total_price%>
+		</tr>
+		
+	</tbody>
+	<%end%>
+</table>
+<b>Total income is : <%=sum %></b><br>
+<br>
+
+<%end%>
+						
+
+

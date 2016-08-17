@@ -1,0 +1,57 @@
+	<table>
+	<thead>
+		<tr>
+			<th>#</th>
+			<th>Name</th>
+			<th>Client</th>
+			<th>Start Date</th>
+			<th>End date</th>
+			<th>Status</th>
+			<th>Description</th>
+			<th>Estimated budget</th>
+			<th>Actions</th>
+			<th>tasks></th>
+			
+		</tr>
+	</thead>
+	<tbody>
+		
+		<tr id="tr_<%=@project.id%>">
+			<td><%=@project.id%></td>
+			<td><%=@project.name %></td>
+			<td><%=@project.client.nil? ? "N/A" : @project.client.name%></td>
+			<td><%=@project.start_date.strftime("%A,%d,%B,%Y")%></td>
+			<td><%=@project.end_end.strftime("%A,%d,%b,%Y")%></td>
+			<td><%=@project.status%></td>
+			<td><%=@project.description%></td>
+			<td><%=@project.estimated_budget%></td>
+			<td><%= link_to "show", project_path(@project.id)%></td>
+			<!--client_path is a method-->
+			
+			
+		</tr>
+			
+	</tbody>
+</table>
+
+<h3>Tasks</h3>
+<table border="2">
+<thead>
+	<tr>
+		<th>Title></th>
+		<th>Due_date</th>
+		<th>Is_completed</th>
+	</tr>
+</thead>		
+
+<tbody>
+<% @project.newtasks.each do |task|%>
+<tr>
+
+	<td><%=task.title%></td>
+	<td><%=task.due_date%></td>
+	<td><%=task.is_completed ? "Yes" : "No"%></td>
+</tr>		
+<%end%>
+</tbody>	
+</table>		

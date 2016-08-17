@@ -1,0 +1,28 @@
+<h1>Listing Announcements</h1>
+<h2>Total Announcements :<%=@announcements.size %></h2>
+<%if @announcements.empty? %>
+	<p>No announcement found </p>
+<%else %>
+	<table class ="table table-striped">
+	<thead>
+		<tr>
+			<th>#</th>
+			<th>Title</th>
+			<th>Body</th>
+			<th>User id</th>		
+		</tr>
+	</thead>
+	<tbody>
+	<%@announcements.each do |announcement| %>
+		<tr>
+			<td><%=announcement.id%></td>
+			<td><%=announcement.title %></td>
+			<td><%=announcement.body %></td>
+			<td><%=announcement.user_id%></td>
+		</tr>
+		<%end%>	
+	</tbody>
+</table>
+<%end %>
+
+<%= link_to 'Add announcement', new_announcement_path,class: "btn btn-primary" %>

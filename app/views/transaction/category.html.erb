@@ -1,0 +1,54 @@
+<h1>Listing Category</h1>
+
+
+<%= link_to "Home",transaction1_product_path%>
+<%@category.each do |cat| %>
+	<p>category<%=cat.name%></p>
+
+
+<table border = "1">
+	<thead>
+	<thead bgcolor = "grey">
+		<tr>
+			<th>Id</th>
+			<th>Name</th>
+			<th >Price</th>
+			<th>Unit</th>
+			<th>In_stock</th>
+			<th>Available_from</th>
+			<th>Category</th>
+		</tr>
+	</thead>
+<!--<p>Find me in app/views/tansaction/products.html.erb</p>-->
+
+	<%products = Product.where('category = ?',cat.id)%>
+		<%products.each_with_index do |product,index|%> 
+	<tr>
+		<td><%=index+1%></td>
+		<td><%=product.name %></td>
+		<td><%=product.price %></td>
+		<td><%=product.unit %></td>
+		<td><%=product.in_stock %></td>
+		<td><%=product.available_from %></td>
+		<th><%=cat.name %></th>
+	</tr>
+	<%end %>
+	
+<tbody>	
+</tbody>		
+</table>
+<%end%>
+	
+	
+	
+	
+	<!--<%@category.each do |cat| %>
+	<p>category<%=cat.name%></p>
+		<%products = Product.where('category = ?',cat.id)%>
+		<%products.each do |product|%>
+		<%=product.name %>
+	<br>	
+
+	<%end%>
+	<%end%>-->	
+	

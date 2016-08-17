@@ -1,0 +1,22 @@
+<h3>Listining Projects</h3>
+<h4>Total projects : <%= @projects.size %></h4>
+<table border = "1">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Client</th>
+			<th>Start Date</th>
+			<th>End Date</th>
+		</tr>
+	</thead>
+		<% @projects.each do |project| %>
+			<tr>
+				<td><%=project.name%></td>
+				<td><%=Client.find(project.client_id).name %></td>
+				<td><%=project.start_date.strftime("%A, %d %B %Y") %></td>
+				<td><%=project.end_end.strftime("%A, %d %B %Y") %></td>
+			</tr>
+		<%end %>
+	<tboby>
+	</tboby>	
+</table>			

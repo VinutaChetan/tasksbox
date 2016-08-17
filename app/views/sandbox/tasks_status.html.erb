@@ -1,0 +1,24 @@
+<h2> list of completed, incomplete and over due tasks </h2>
+
+
+<h3> completed tasks :<%= @task_complete.size %> </h3>
+<ol> 
+<% @task_complete.each do |task| %>
+<li> <%= task.title %> </li>
+<% end %>
+</ol>
+
+<h3> In complete tasks :<%= @task_incomplete.size %> </h3>
+<ol> 
+<% @task_incomplete.each do |task| %>
+<li> <%= task.title %> </li>
+<% end %>
+</ol>
+
+
+<h3> Over due tasks :<%= @task_due.size %> </h3>
+<ol> 
+<% @task_due.each do |task| %>
+<li> <%= task.title %> </li>
+<% end %>
+</ol>

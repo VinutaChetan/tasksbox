@@ -1,0 +1,46 @@
+<h1>Hello World</h1>
+<a href ="/say/goodbye">Say Goodbye</a>
+<%=link_to "products",say_products_path %>
+
+2+2 = <%= 2+2 %>
+
+<% movies = ["u turn","kabali","independence day","sultan", "thithi" ] %>
+
+<ol>
+	<li>apple</li>
+	<li>mongo</li>
+	<li>watermelon</li>
+</ol>
+
+<h3>Now showing</h3>
+<ol>
+	<% movies.each do |movie| %>
+	<li><%= movie %></li>
+	<% end %>
+</ol>
+
+<% signed_in = [true,false].sample %>
+
+<% if signed_in %>
+	<p>Welcome User!</p>
+	<% else %>
+	<p> Log in to continue...</p>
+
+<%end %>
+
+<% movies ={"UTurn" => ["veeresh,pur",120,8.4],"kabali" => ["inox,lib",144,9.2],"sultan" => ["inox,pur",132,9.8] } %>
+<h3> Now showing </h3>
+	<ol>
+	<%movies.each do |key,value|  %>
+	<li><%=key %></li>
+	<ul>
+		<li>Theator - <%= value[0]%></li>
+		<li>Duration - <%= value[1]%></li>
+		<li>Rating - <%= value[2]%></li>
+	</ul>
+	
+	<%end%>	
+	</ol>
+
+
+

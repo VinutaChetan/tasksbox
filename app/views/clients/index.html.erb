@@ -1,0 +1,96 @@
+<div class="row">
+  <div class ="col-md-8">
+     <div class="page-header">
+
+
+<h1>Listing clients</h1>
+</div>
+
+<%=link_to clients_path(format: "xls"),class: "btn btn-info btn-sm pull-right" do %>
+	<span class="glyphicon glyphicon-download-alt"></span>Export to Excel
+<% end %>	
+
+
+<!--its to export to excel -->
+<!--<%= link_to "Export to Excel",clients_path(format: "xls") %><br/>-->
+<br/>
+<script>
+$(document).ready(function(){
+    $('#myTable').DataTable();
+});
+</script>
+
+<%if @clients.empty? %>
+	<p>No clients found </p>
+<%else %>
+	<table class ="table table-striped" id="myTable">
+	<thead>
+		<tr>
+			<th>#</th>
+			<th>Name</th>
+			<th>Companny</th>
+			<th>Mobile</th>
+			<th>Email</th>
+			<% if current_user.is_admin? %>
+				<th>User</th>
+			<% end %>	
+			<th>Actions</th>
+			
+		</tr>
+	</thead>
+	<tbody>
+		<% @clients.each_with_index do|client,index| %>
+		<tr>
+			<td><%=index+1%></td>
+			<td><%=link_to client.name,client_path(client.id) %></td>
+			<td><%=client.company.capitalize %></td>
+			<td><%=client.mobile%></td>
+			<td><%=client.email%></td>
+			
+			<%if current_user.is_admin? %>
+				<td><%=client.user.email %></td>
+			<%end %>	
+			<td>
+				<%= link_to client_path(client.id) do %>
+					<span class="glyphicon glyphicon-eye-open"></span>
+				<% end %>
+			</td>		
+			<!--client_path is a method-->
+			
+		</tr>
+		<%end%>	
+	</tbody>
+</table>
+<%end %>
+
+
+
+<% if can? :create, Client.new %>
+	<%= link_to "Add Client", new_client_path, class:"btn-btn-default"%>
+<% end %>	
+
+
+</div>
+
+<div class="col-md-4">
+	<h2>some statistic goes here</h2>
+
+
+<% data={}
+	current_user.clients.each do |client|
+		data[client.name] = client.projects.count 
+	end %>	
+
+<% data %>
+
+<%=pie_chart(data) %>
+
+<%=column_chart(data) %>
+
+<%=bar_chart(data) %>
+
+</div>
+</div>
+
+
+	

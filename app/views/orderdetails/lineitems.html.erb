@@ -1,0 +1,29 @@
+<h1>Total Lineitems :<%=@lineitems.size %></h1>
+<%= link_to "Home",transaction1_product_path%>
+
+<table border ="1">
+	<thead>
+		<tr>
+			<th>#</th>
+			<th>Order_id</th>
+			<th>Product_id</th>
+			<th>Quantity</th>
+			<th>Price</th>
+			<th>Total_price</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @lineitems.each_with_index do |lineitem,index| %>
+		<tr>
+			<td><%=index+1 %></td>
+			<td><%= lineitem.order_id %></td>
+			<td><%= lineitem.product_id %></td>
+			<td><%= lineitem.quantity %></td>
+			<td><%= lineitem.price %></td>
+			<td><%= lineitem.total_price %></td>
+		</tr>
+		<%end%>	
+	</tbody>
+</table>
+
+

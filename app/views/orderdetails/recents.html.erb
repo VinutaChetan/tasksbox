@@ -1,0 +1,20 @@
+<h1> Recent <%= @orders.size %> Orders </h1>
+<%=link_to "Orders" ,orderdetails_orders_path %><br>
+<br>
+<table border = "1">
+ <thead>
+		<tr>
+			<th>Order_date</th>
+			<th>Order_number</th>
+			
+		</tr>
+	</thead>
+	<tbody>
+		<% @orders.each do |order| %>
+		<tr>
+			<td><%=order.order_date %></td>
+			<td><%=order.order_number %></td>
+		</tr>
+		<%end%>	
+	</tbody>
+</table>

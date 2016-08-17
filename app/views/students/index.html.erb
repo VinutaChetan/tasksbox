@@ -1,0 +1,41 @@
+<div class= row >
+	<div class = "col-md-12">
+	<div class="page-header">
+
+<h1>Listing Students</h1>
+
+</div>
+
+<%if @students.empty? %>
+	<p>No students found </p>
+<%else %>
+<h4>Total Students :<%=@students.size%></h4>
+
+	 <table class ="table table-striped">
+	<thead>
+		<tr>
+			<th>Student_id</th>
+			<th>Name</th>
+			<th>Email</th>
+			<th>Major</th>
+			
+		</tr>
+	</thead>
+	<tbody>
+		<%@students.each do|student| %>
+		<tr>
+			<td><%=student.student_id%></td>
+			<td><%=student.name %></td>
+			<td><%=student.mail %></td>
+			<td><%=student.major%></td>
+			
+		</tr>
+		<%end%>	
+	</tbody>
+</table>
+<%end %>
+
+<%= link_to "Add students",new_student_path ,class: "btn btn-primary"%>
+
+</div>
+</div>

@@ -1,0 +1,77 @@
+<div class="row">
+	<div class="col-md-7">
+		<div class="page-header">
+			<h2><%=@client.name %><br/>
+			<small>
+				<%=@client.code%>
+				<span class="glyphicon glyphicon-briefcase"></span><%=@client.company%>
+				<span class="glyphicon glyphicon-earphone"></span><%=@client.mobile%>
+				<span class="glyphicon glyphicon-envelop"></span><%=mail_to @client.email%>
+			</small></h2>
+		</div>
+
+		<div class="panel panel-primary">
+			<div class="panel-heading">Projects</div>
+				<div class="panel-body">
+				<ul class="list-group">
+				<% for project in @client.projects %>
+				<li class="list-group-item"><%=project.name %></li>
+				<% end %>
+				</ul>
+			</div>
+		</div>		
+	</div>
+	
+	<div class="col-md-5" >
+
+	</div>
+</div>	
+
+
+
+
+
+<h3><%= @client.name %></h3>
+<p><%= @client.company %> <%=@client.mobile %> <%=@client.email %></p>
+
+<% if can? :update, @client %>
+	<%= link_to "edit",edit_client_path(@client.id)%>
+<% end %>
+
+<% if can? :destroy, @client %>
+	<%= link_to "delete",client_path(@client.id),data:{method: :delete,confirm: "Are you sure?"} %>
+<% end %>
+
+<% if @client.projects.empty? %>
+	No Projects found
+<%else %>
+<h3>Total Projects :<%=@client.projects.size %></h3>
+<ul>
+	<% @client.projects.each do |project|%>
+		<li><%=project.name%></li>
+	<%end%>
+</ul>
+<%end%>	
+
+<div class="row">
+	<div class="col-md-12">
+		<div class="page-header">
+		<h2>Time line</h2>
+
+<% data =[]
+ 	@client.projects.each do |project|
+ 		data.push([project.name,project.start_date,project.end_end])
+ 	end	
+%>	
+
+<%= timeline(data) %>
+
+</div>
+</div>	
+
+<h4>Total Tasks for client is :Inner join
+<%= Newtask.joins(:project).where('projects.client_id = ?',@client.id).size %>
+</h4>
+
+<p>Alernate way best one ,select In</p>
+<%=  Newtask.where(project_id: @client.project_ids).size %>
