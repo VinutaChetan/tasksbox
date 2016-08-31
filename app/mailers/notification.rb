@@ -18,7 +18,7 @@ class Notification < ActionMailer::Base
     @task =newtask
     @user =user
 
-  mail to: c
+  mail to: "#{newtask.project.client.email}",cc: "#{user.email}",subject: "#{newtask.title} has been completed!"
 end
 
   def greeting(announcement)

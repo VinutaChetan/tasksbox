@@ -49,7 +49,7 @@
 		<%@projects.each do|project| %>
 		<tr>
 			<td><%=project.id%></td>
-			<td><%=project.name %></td>
+			<td><%=link_to project.name,project_path(project.id) %></td>
 			<td><%= project.client.nil? ? "N/A" : project.client.name%></td>
 			<td><%=project.start_date.strftime("%A,%d,%B,%Y")%></td>
 			<td><%=project.end_end.strftime("%A,%d,%b,%Y")%></td>

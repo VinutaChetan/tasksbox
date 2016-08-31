@@ -23,6 +23,22 @@
 <h3> Add tasks </h3>
 <%= form_for @task do |f|%>
 
+
+
+<%= f.hidden_field :project_id, value: @project.id %>
+
+<lable>Title </lable><br/>
+
+<%=f.text_field :title %><br/>
+
+<label>Due_date</label><br/>
+<%= f.date_select :due_date,order:[:day,:month,:year] %><br/>
+
+<%=f.check_box :is_completed %> <label>Is Completed? </label><br/>
+
+<%=f.submit %>
+<% end %>
+
 <h3>Completed Tasks</h3>
 <% completed_task =@project.newtasks.where('is_completed = ?',true) %>
 <ul>
@@ -41,21 +57,6 @@
 	</li>
 <% end %>
 </ul>	
-
-
-<%= f.hidden_field :project_id, value: @project.id %>
-<lable>Title </lable><br/>
-
-<%=f.text_field :title %><br/>
-
-<label>Due_date</label><br/>
-<%= f.date_select :due_date,order:[:day,:month,:year] %><br/>
-
-<%=f.check_box :is_completed %> <label>Is Completed? </label><br/>
-
-<%=f.submit %>
-
-<%end%>
 
 <% data ={}
 data["completed"] = @project.newtasks.where('is_completed =?', true).count 

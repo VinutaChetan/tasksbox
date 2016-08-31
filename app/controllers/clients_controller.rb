@@ -5,8 +5,9 @@ class ClientsController < ApplicationController
 def index	
 	#@clients=Client.all
 
-	#its for personalization where login id should match user_id
-	@clients =current_user.is_admin? ? Client.all : current_user.clients 
+	@clients =current_user.is_admin? ? Client.all : current_user.clients
+
+	#its for personalization where login id should match user_id 
 	#@clients=current_user.clients 
 	#Or we do the below
 	#Client.where('user_id=?',Current_user.id)
